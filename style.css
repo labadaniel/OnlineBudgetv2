@@ -19,3 +19,8 @@ body
 {
 	background-color: #2F4A57;
 }
+
+.navbar-nav > li a:hover
+{
+	color: white;
+}
