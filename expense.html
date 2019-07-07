@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
  
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -13,7 +14,7 @@
   <script type="text/javascript" src="script.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
-  <body >
+  <body onload="currentDate()">
     <header class="d-block">
 		<div class="container-fluid no-gutters">
 			<div class="row" >
@@ -48,7 +49,7 @@
 				</li>
 				
 				<li class="nav-item px-3  border-right">
-					<a class="nav-link" href="#">Przeglądaj bilans</a>
+					<a class="nav-link" href="balance.html">Przeglądaj bilans</a>
 				</li>
 				
 				<li class="nav-item px-3  border-right">
@@ -69,160 +70,166 @@
 			
 				<div class="col-8 pt-2  pb-2 text-white  shadow-lg rounded" style="background-color: #4F788D">
 					<p class="text-center h4">Dodaj wydatek</p>
-					<div class="col-4 d-inline-block">
-						
-						
-						<div class="col ">
-							<form class="h6 pt-1 "action="login.html">
-								<div class="form-group">
-									<div class="col">
-										<label for="amount">Podaj kwote: </label>
-									</div>
-								
-									<div class="col">
-										<input type="number" mame="amount"class="form-control" placeholder="kwota">
-									</div>
-								</div>
-								
-								<div class="form-group">
-									<div class="col">
-										<label for="date"> Data: </label>
-									</div>
-								
-									<div class="col">
-										<input type="text" name="date" class="form-control" placeholder="yyyy-mm-dd">
-									</div>
-								</div>
-							</form>
-						</div>
-						
-						<div class="col d-inline-block">
-							<div class="h5 border-bottom rounded">Sposób płatności</div>
-							<form class=" pt-2 " >
-							
-								<div class="form-check">
-									<div class="col-12">
-										<input type="radio" name="method" class="form-check-input"> Gotówka
-									</div>
-								</div>
-								
-								<div class="form-check">
-									<div class="col-12">
-										<input type="radio" name="method" class="form-check-input"> Karta debetowa
-									</div>
-								</div>
-								
-								<div class="form-check">
-									<div class="col-12">
-										<input type="radio" name="method" class="form-check-input"> Karta kredytowa
-									</div>
-								</div>
-								
-							</form>
-						</div>
-					</div>
 					
-					<div class="col-7 d-inline-block">
 						
-						<div class="h5 border-bottom rounded">Kategoria</div>
-						<form class="pt-2" >
-							<div class="col-5 d-inline-block">
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" id="1"class="form-check-input"> Jedzenie
-										
+						
+					
+					<form action="main.html">
+						<div class="col-4 d-inline-block">
+							<div class="col ">
+								<div class="h6 mt-2 ">
+									<div class="form-group">
+										<div class="col">
+											<label for="amount">Podaj kwote: </label>
+										</div>
+									
+										<div class="col">
+											<input type="number" name="amount" step=0.01 class="form-control" placeholder="kwota" required>
+										</div>
 									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Mieszkanie
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Transport
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Telekomunikacja
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Opieka zdrowotna
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Higiena
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Dzieci
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Rozrywka
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Wycieczka
-									</div>
-								</div>
-
-							</div>
-							
-							<div class="col-6 d-inline-block">
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" id="1"class="form-check-input"> Szkolenia
-										
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Książki
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Oszczędności
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Na złotą jesień, czyli emeryturę
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Spłata długów
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Darowizna
-									</div>
-								</div>
-								<div class="form-check">
-									<div class="col">
-										<input type="radio" name="method" class="form-check-input"> Inne wydatki
-										<div class="form-group"> 
-											<textarea class="form-control" rows="1"></textarea>
+									
+									<div class="form-group">
+										<div class="col">
+											<label for="date"> Data: </label>
+										</div>
+									
+										<div class="col">
+											<input type="text" name="date" id="date"  class="form-control" placeholder="yyyy-mm-dd" required>
 										</div>
 									</div>
 								</div>
+							</div>	
+							
+							<div class="col d-inline-block">
+								<div class="h5 border-bottom rounded">Sposób płatności</div>
+								<div class=" pt-2 " name="form">
+								
+									<div class="form-check">
+										<div class="col-12">
+											<input type="radio" name="method" class="form-check-input" value="cash" required> Gotówka
+										</div>
+									</div>
+									
+									<div class="form-check">
+										<div class="col-12">
+											<input type="radio" name="method" class="form-check-input" required> Karta debetowa
+										</div>
+									</div>
+									
+									<div class="form-check">
+										<div class="col-12">
+											<input type="radio" name="method" class="form-check-input" required> Karta kredytowa
+										</div>
+									</div>
+									
+								</div>
 							</div>
-						</form>
-					</div>
-					<div class="float-right mt-1">
-						<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit">Anuluj</button>
-						<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit">Dodaj</button>
-					</div>
+						</div>
+						
+						<div class="col-7 d-inline-block">
+							
+							<div class="h5 border-bottom rounded">Kategoria</div>
+							<div class="pt-2" action="main.html">
+									<div class="col-5 d-inline-block">
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" id="1"class="form-check-input" required> Jedzenie
+												
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Mieszkanie
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Transport
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Telekomunikacja
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Opieka zdrowotna
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Higiena
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Dzieci
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Rozrywka
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Wycieczka
+											</div>
+										</div>
+
+									</div>
+									
+									<div class="col-6 d-inline-block">
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" id="1"class="form-check-input" required> Szkolenia
+												
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Książki
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Oszczędności
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Na złotą jesień, czyli emeryturę
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Spłata długów
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Darowizna
+											</div>
+										</div>
+										<div class="form-check">
+											<div class="col">
+												<input type="radio" name="category" class="form-check-input" required> Inne wydatki
+												<div class="form-group"> 
+													<textarea class="form-control" rows="1"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="float-right mt-1">
+										<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit" formnovalidate>Anuluj</button>
+										<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit">Dodaj</button>
+									</div>
+							</div>
+						</div>
+					</form>
+					
+					
 					
 					
 					
