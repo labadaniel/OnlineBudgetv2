@@ -3,9 +3,9 @@ function currentDate()
 		var d = new Date();
 		var year = d.getFullYear();
 		var month = d.getMonth() + 1;
-		if (month < 10) month = "0" + month;
+		if (month<10) month = "0" + month;
 		var day = d.getDate();
-		if (day < 10) day = "0" + day;
+		if (day<10) day = "0" + day;
 		
 		var readyDate = year + "-" + month + "-" + day;
 		document.getElementById("date").value = readyDate;
