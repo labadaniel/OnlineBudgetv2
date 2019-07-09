@@ -9,12 +9,13 @@
 	<script type="text/javascript" src="script.js"></script>
  
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
-  <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
-  <body onload="currentDate()">
+  <body onload="currentDate()"  class="d-flex flex-column">
     <header class="d-block">
 		<div class="container-fluid no-gutters">
 			<div class="row" >
@@ -38,25 +39,30 @@
 	</header>
 	
 	<nav class="navbar tlo2 navbar-dark navbar-expand-lg ">
-		<div	class="navbar-collapse pb-1">
-			<ul class="navbar-nav mx-auto">
-				<li class="nav-item px-3 ml-5 border-left border-right">
+		<div	class="  pb-1">
+			<button class="navbar-toggler navbar-toggler-left " type="button" data-toggle="collapse" data-target="#navb">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+		<div class="mx-auto">
+			<ul class="navbar-nav mx-auto collapse navbar-collapse" id="navb">
+				<li class="nav-item px-3">
 					<a class="nav-link" href="#">Dodaj przychód</a>
 				</li>
 				
-				<li class="nav-item px-3  border-right">
+				<li class="nav-item px-3 ">
 					<a class="nav-link" href="expense.html">Dodaj wydatek</a>
 				</li>
 				
-				<li class="nav-item px-3  border-right">
+				<li class="nav-item px-3 ">
 					<a class="nav-link" href="balance.html">Przeglądaj bilans</a>
 				</li>
 				
-				<li class="nav-item px-3  border-right">
+				<li class="nav-item px-3 ">
 					<a class="nav-link" href="#">Ustawienia</a>
 				</li>
 				
-				<li class="nav-item px-3  border-right">
+				<li class="nav-item px-3 ">
 					<a class="nav-link" href="login.html">Wyloguj się</a>
 				</li>
 			</ul>
@@ -64,26 +70,27 @@
 	</nav>
 	
 	<main class="d-block tlo1" style="height: 100%;">
-		<div class="container-fluid no-gutters pt-4  " >
+		<div class="container-fluid no-gutters pt-2  " >
 			
-			<div class="row justify-content-center" >
+			<div class="row justify-content-center mt-2 mb-2" >
 			
-				<div class="col-8 pt-2  pb-2 text-white  shadow-lg rounded" style="background-color: #4F788D">
-					<p class="text-center h4">Dodaj wydatek</p>
-					
-						
-						
-					
+				<div class="col-9 pt-1  pb-1 text-white  shadow-lg rounded mb-5" style="background-color: #4F788D">
 					<form action="main.html">
-						<div class="col-4 d-inline-block">
-							<div class="col ">
-								<div class="h6 mt-2 ">
+						<p class="text-center h4 mb-3">Dodaj wydatek</p>
+					
+						
+						
+					
+						<div class="col-sm-8 col-md-12 col-lg-5 d-inline-block justify-item-top">
+							<div class="h5 border-bottom rounded">Wydatek	</div>
+							<div class="col-md-10">
+								
 									<div class="form-group">
 										<div class="col">
 											<label for="amount">Podaj kwote: </label>
 										</div>
 									
-										<div class="col">
+										<div class="col-md-7 col-lg-12">
 											<input type="number" name="amount" step=0.01 class="form-control" placeholder="kwota" required>
 										</div>
 									</div>
@@ -93,43 +100,43 @@
 											<label for="date"> Data: </label>
 										</div>
 									
-										<div class="col">
-											<input type="text" name="date" id="date"  class="form-control" placeholder="yyyy-mm-dd" required>
+										<div class="col-md-7 col-lg-12">
+											<input type="date" name="date" id="date"  class="form-control" placeholder="yyyy-mm-dd" required>
 										</div>
 									</div>
-								</div>
+								
 							</div>	
 							
-							<div class="col d-inline-block">
-								<div class="h5 border-bottom rounded">Sposób płatności</div>
-								<div class=" pt-2 " name="form">
-								
-									<div class="form-check">
-										<div class="col-12">
-											<input type="radio" name="method" class="form-check-input" value="cash" required> Gotówka
-										</div>
+							
+							<div class="h5 border-bottom rounded">Sposób płatności</div>
+							<div class="pt-1" name="form">
+							
+								<div class="form-check">
+									<div class="col">
+										<input type="radio" name="method" class="form-check-input" value="cash" required> Gotówka
 									</div>
-									
-									<div class="form-check">
-										<div class="col-12">
-											<input type="radio" name="method" class="form-check-input" required> Karta debetowa
-										</div>
-									</div>
-									
-									<div class="form-check">
-										<div class="col-12">
-											<input type="radio" name="method" class="form-check-input" required> Karta kredytowa
-										</div>
-									</div>
-									
 								</div>
+								
+								<div class="form-check">
+									<div class="col">
+										<input type="radio" name="method" class="form-check-input" required> Karta debetowa
+									</div>
+								</div>
+								
+								<div class="form-check">
+									<div class="col">
+										<input type="radio" name="method" class="form-check-input" required> Karta kredytowa
+									</div>
+								</div>
+								
 							</div>
+							
 						</div>
 						
-						<div class="col-7 d-inline-block">
+						<div class=" col-md-12 col-lg-6 d-inline-block">
 							
 							<div class="h5 border-bottom rounded">Kategoria</div>
-							<div class="pt-2" action="main.html">
+							<div class="col-lg-12" action="main.html">
 									<div class="col-5 d-inline-block">
 										<div class="form-check">
 											<div class="col">
@@ -180,40 +187,40 @@
 
 									</div>
 									
-									<div class="col-6 d-inline-block">
+									<div class="col-6 col-xs-12 d-inline-block pl-3" >
 										<div class="form-check">
-											<div class="col">
+											<div class="col-6">
 												<input type="radio" name="category" id="1"class="form-check-input" required> Szkolenia
 												
 											</div>
 										</div>
 										<div class="form-check">
-											<div class="col">
+											<div class="col-6">
 												<input type="radio" name="category" class="form-check-input" required> Książki
 											</div>
 										</div>
 										<div class="form-check">
-											<div class="col">
+											<div class="col-6">
 												<input type="radio" name="category" class="form-check-input" required> Oszczędności
 											</div>
 										</div>
 										<div class="form-check">
-											<div class="col">
+											<div class="col-6">
 												<input type="radio" name="category" class="form-check-input" required> Na złotą jesień, czyli emeryturę
 											</div>
 										</div>
 										<div class="form-check">
-											<div class="col">
+											<div class="col-6">
 												<input type="radio" name="category" class="form-check-input" required> Spłata długów
 											</div>
 										</div>
 										<div class="form-check">
-											<div class="col">
+											<div class="col-6">
 												<input type="radio" name="category" class="form-check-input" required> Darowizna
 											</div>
 										</div>
 										<div class="form-check">
-											<div class="col">
+											<div class="col-12">
 												<input type="radio" name="category" class="form-check-input" required> Inne wydatki
 												<div class="form-group"> 
 													<textarea class="form-control" rows="1"></textarea>
@@ -221,7 +228,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="float-right mt-1">
+									<div class="col-lg-12 float-right mt-1">
 										<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit" formnovalidate>Anuluj</button>
 										<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit">Dodaj</button>
 									</div>
@@ -239,16 +246,16 @@
 		
 	</main>
 	
-	<footer>
-		<div class="fixed-bottom tlo3 w-100 pt-3 pb-3 text-center">
-			Wszelkie prawa zastrzeżone &copy; 2019 Dziękuję za wizytę!
-		</div>
+	<footer class=" tlo3  mt-auto py-3  fixed-bottom text-center">
+		
+			<div>
+				Wszelkie prawa zastrzeżone &copy; 2019 Dziękuję za wizytę!
+			</div>
+	
 	</footer>
 
 	
  
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+   
   </body>
 </html>

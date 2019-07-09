@@ -37,25 +37,30 @@
 	</header>
 	
 	<nav class="navbar tlo2 navbar-dark navbar-expand-lg ">
-		<div	class="navbar-collapse pb-1">
-			<ul class="navbar-nav mx-auto">
-				<li class="nav-item px-3 ml-5 border-left border-right">
+		<div	class="  pb-1">
+			<button class="navbar-toggler navbar-toggler-left " type="button" data-toggle="collapse" data-target="#navb">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+		<div class="mx-auto">
+			<ul class="navbar-nav mx-auto collapse navbar-collapse" id="navb">
+				<li class="nav-item px-3">
 					<a class="nav-link" href="#">Dodaj przychód</a>
 				</li>
 				
-				<li class="nav-item px-3  border-right">
+				<li class="nav-item px-3 ">
 					<a class="nav-link" href="expense.html">Dodaj wydatek</a>
 				</li>
 				
-				<li class="nav-item px-3  border-right">
+				<li class="nav-item px-3 ">
 					<a class="nav-link" href="balance.html">Przeglądaj bilans</a>
 				</li>
 				
-				<li class="nav-item px-3  border-right">
+				<li class="nav-item px-3 ">
 					<a class="nav-link" href="#">Ustawienia</a>
 				</li>
 				
-				<li class="nav-item px-3  border-right">
+				<li class="nav-item px-3 ">
 					<a class="nav-link" href="login.html">Wyloguj się</a>
 				</li>
 			</ul>
@@ -67,19 +72,19 @@
 			
 			<div class="row mx-2" style="min-height:400px" >
 			
-				<div class="col-3 pt-2  mx-5 mt-3 pb-2 text-white  shadow-lg rounded" style="background-color: #4F788D">
+				<div class="col-lg-4 pt-2  mt-3 mx-3 pb-2 text-white  shadow-lg rounded" style="background-color: #4F788D">
 					<p class="text-center h4">Przychody</p>
 				</div>
 				
-				<div class="col-3 pt-2  pb-2 mt-3 text-white  shadow-lg rounded" style="background-color: #4F788D">
+				<div class="col-lg-4 pt-2  pb-2 mx-3 mt-3 text-white  shadow-lg rounded" style="background-color: #4F788D">
 					<p class="text-center h4">Wydatki</p>
 				</div>
 				
-				<div class="col-4 pt-2  pb-2 ml-4 mt-2 justify-content-center dropright">
+				<div class="col-md-3 pt-2  pb-2 ml-4 mt-2 justify-content-center dropright">
 					<button type="button" class="btn dropdown-toggle btn-primary tlo2" data-toggle="dropdown">
 						Wybierz datę
 					</button>
-					<div class="dropdown-menu shadow-lg text-white" style="background-color: #4F788D">
+					<div class="col dropdown-menu shadow-lg text-white" style="background-color: #4F788D">
 						<div class="form-check mx-2">
 							<input type="radio" class="form-check-input" name="period">
 							<label class="form-check-label">Bieżący miesiąc</label>
@@ -96,20 +101,20 @@
 							<input type="radio" class="form-check-input" name="period">
 							<label class="form-check-label">Niestandardowy okres:</label>
 						</div>
-						<div class="form-group mt-3"> 
-							<textarea class="form-control w-75 mx-auto" rows="2" placeholder="od yyyy-mm-dd"></textarea>
+						<div class="form-group mt-1"> 
+							<input type="date" name="date" id="date"  class="form-control w-75 mx-auto" placeholder="od kiedy" required>
 						</div>
 						<div class="form-group"> 
-							<textarea class="form-control w-75 mx-auto" rows="2" placeholder="do yyyy-mm-dd"></textarea>
+							<input type="date" name="date" id="date"  class="form-control w-75 mx-auto" placeholder="do kiedy" required>
 						</div>
 						
-						<div class="float-right mt-3 mr-2">
+						<div class="float-right mt-1 mr-2">
 							<button type="button" class="btn btn-primary tlo2" >
 								Pokaz
 							</button>
 						</div>
 					</div>
-					<div class="mt-5 pt-5 justify-content-center" id="piechart">
+					<div class="mt-4 pt-4 justify-content-center" id="piechart">
 					</div>
 					
 				</div>
