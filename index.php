@@ -65,7 +65,7 @@
 							<button type="submit" class="tlo2 btn btn-primary float-right ml-5 hoverable">Logowanie</button>
 							<div>
 								Nie posiadasz konta?   
-								<a href="register.html" class="text-danger">REJESTRACJA</a>
+								<a href="register.php" class="text-danger">REJESTRACJA</a>
 							</div>
 
 						
