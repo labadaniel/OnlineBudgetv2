@@ -1,3 +1,15 @@
+<?php
+	session_start();
+	
+	if(isset($_SESSION['user_logedin']) && $_SESSION['user_logedin']== true)
+	{
+		header('location: main.php');
+		exit();
+	}
+
+?>
+
+
 <!doctype html>
 <html lang="pPL">
   <head>
@@ -37,38 +49,36 @@
 	<main class="d-block tlo1" style="height: 100%;">
 		<div class="container-fluid no-gutters pt-5 " >
 			<div class="row justify-content-center" >
-			
 				<div class="col-lg-5 col-sm-8  p-4  text-white  h4 shadow-lg rounded" style="background-color: #4F788D">
 					<p class="text-center">Zaloguj sie</p>
-					<form class="h6 pt-2 " action="main.html">
+					<form class="h6 pt-2 " method="post" action="login.php">
 						<div class="form-group">
 							<div class="col-5">
 								<label for="email">Podaj adres Email: </label>
 							</div>
-						
 							<div class="col-12">
-								<input type="email" id="email" class="form-control" placeholder="adres Email">
+								<input type="text" id="email" name="email" class="form-control" placeholder="adres Email">
 							</div>
 						</div>
-						
 						<div class="form-group">
 							<div class="col-5">
 								<label for="password"> Podaj haslo: </label>
 							</div>
-						
 							<div class="col-12">
-								<input type="password" id="password" class="form-control" placeholder="haslo">
+								<input type="password" id="password" name="password" class="form-control" placeholder="haslo">
 							</div>
+							<?php
+								if(isset($_SESSION['blad'] ))
+								{
+									echo $_SESSION['blad'] ;
+								}
+							?>
 						</div>
-						
-						
-							<button type="submit" class="tlo2 btn btn-primary float-right ml-5 hoverable">Logowanie</button>
-							<div>
-								Nie posiadasz konta?   
-								<a href="register.php" class="text-danger">REJESTRACJA</a>
-							</div>
-
-						
+						<button type="submit" class="tlo2 btn btn-primary float-right ml-5 hoverable">Logowanie</button>
+						<div>
+							Nie posiadasz konta?   
+							<a href="register.php" class="text-danger">REJESTRACJA</a>
+						</div>
 					</form>
 				</div>
 			</div>

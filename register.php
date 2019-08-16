@@ -84,12 +84,19 @@
 					}
 				}
 			}
+			$connectionSQL->close();
 		}
 		catch (exception $e)
 		{
 			echo '<span style="color:red;">Błąd serwera. Przepraszamy za niedogodności i prosimy o rejestrację w innym terminie</span>';
 			echo '<br /> Informacja deweloperska: '.$e;
 		}
+	}
+	
+	if(isset($_SESSION['user_logedin']) && $_SESSION['user_logedin']== true)
+	{
+		header('location: main.php');
+		exit();
 	}
 ?>
 
