@@ -1,3 +1,11 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['user_logedin']))
+	{
+		header('location: index.php');
+	}
+?>
+
 <!doctype html>
 <html lang="PL">
   <head>
@@ -47,11 +55,11 @@
 				</li>
 				
 				<li class="nav-item px-3 ">
-					<a class="nav-link" href="expense.html">Dodaj wydatek</a>
+					<a class="nav-link" href="#">Dodaj wydatek</a>
 				</li>
 				
 				<li class="nav-item px-3 ">
-					<a class="nav-link" href="balance.html">Przeglądaj bilans</a>
+					<a class="nav-link" href="#">Przeglądaj bilans</a>
 				</li>
 				
 				<li class="nav-item px-3 ">
@@ -59,7 +67,7 @@
 				</li>
 				
 				<li class="nav-item px-3 ">
-					<a class="nav-link" href="login.html">Wyloguj się</a>
+					<a class="nav-link" href="logout.php">Wyloguj się</a>
 				</li>
 			</ul>
 		</div>
@@ -67,7 +75,9 @@
 	
 	<main class="d-block tlo1" style="height: 100%;">
 		<div class="container-fluid no-gutters pt-5 " >
-			
+		<?php
+			echo "udalo sie. hurrra";
+		?>
 		</div>
 	</main>
 	
