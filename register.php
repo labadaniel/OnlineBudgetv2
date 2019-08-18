@@ -74,8 +74,28 @@
 				
 				if($validated == true)
 				{
-					if($connectionSQL->query("INSERT INTO users VALUES (NULL, '$username', '$email', '$hashedPassword')"))
+					if($connectionSQL->query("INSERT INTO users VALUES (NULL, '$username', '$hashedPassword', '$email')"))
 					{
+						//$user_id = $connectionSQL->query("SELECT id FROM users WHERE username = '$username'");
+						
+						//przypisywanie expenses do uzytkownika
+						$connectionSQL->query("INSERT INTO expenses_category_assigned_to_users (name, user_id)
+																	SELECT expenses_category_default.name, users.id 
+																	FROM expenses_category_default, users
+																	WHERE users.username = '$username'");
+																	
+						//przypisywanie incomes do uzytkownika
+						$connectionSQL->query("INSERT INTO incomes_category_assigned_to_users (name, user_id)
+																	SELECT incomes_category_default.name, users.id 
+																	FROM incomes_category_default, users
+																	WHERE users.username = '$username'");
+						//przypisywanie methods do uzytkownika
+						$connectionSQL->query("INSERT INTO payment_methods_assigned_to_users (name, user_id)
+																	SELECT payment_methods_default.name, users.id 
+																	FROM payment_methods_default, users
+																	WHERE users.username = '$username'");
+	
+						
 						header ('location: index.php');
 					}
 					else
