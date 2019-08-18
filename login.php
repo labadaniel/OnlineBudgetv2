@@ -44,19 +44,19 @@
 					}
 					else
 					{
-						$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło1</span>';
+						$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło</span>';
 						header('location: index.php');
 					}
 				}
 				else
 				{
-					$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło2</span>';
+					$_SESSION['blad'] = '<span style="color:red">Nieprawidłowy login lub hasło</span>';
 					header('location: index.php');
 				}
 			
 			}else
 			{
-				echo "nie dziala1"; //do poprawy throw
+				throw new Exception ($connectionSQL->error);
 			}
 		}
 		
