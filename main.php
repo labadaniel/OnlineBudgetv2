@@ -55,7 +55,7 @@
 				</li>
 				
 				<li class="nav-item px-3 ">
-					<a class="nav-link" href="#">Dodaj wydatek</a>
+					<a class="nav-link" href="expense.php">Dodaj wydatek</a>
 				</li>
 				
 				<li class="nav-item px-3 ">

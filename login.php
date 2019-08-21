@@ -38,6 +38,7 @@
 					{
 						$_SESSION['user_logedin'] = true;
 						unset($_SESSION['blad']);
+						$_SESSION['logged_user_id'] = $user_row['id'];
 						$result->free_result();
 						header('location: main.php');	
 					
