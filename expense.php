@@ -63,7 +63,7 @@
 				</li>
 				
 				<li class="nav-item px-3 ">
-					<a class="nav-link" href="login.html">Wyloguj się</a>
+					<a class="nav-link" href="logout.php">Wyloguj się</a>
 				</li>
 			</ul>
 		</div>
@@ -75,145 +75,132 @@
 			<div class="row justify-content-center mt-2 mb-2" >
 			
 				<div class="col-9 pt-1  pb-1 text-white  shadow-lg rounded mb-5" style="background-color: #4F788D">
-					<form action="main.html">
+					<form method="post" action="adding_expenes.php">
 						
 						<div class="text-center h4 pb-3">Dodaj wydatek</div>
-			
-						
-						
 					
 						<div class="col-sm-12 col-lg-5 p-2 float-left">
 							<div class="h5 border-bottom rounded">Wydatek	</div>
 							<div class="col-md-10">
-								
 									<div class="form-group">
 										<div class="col">
 											<label for="amount">Podaj kwote: </label>
 										</div>
-									
 										<div class="col-md-7 col-lg-12">
 											<input type="number" name="amount"  id="amount" step=0.01 class="form-control" placeholder="kwota" required>
 										</div>
 									</div>
-									
 									<div class="form-group">
 										<div class="col">
 											<label for="date"> Data: </label>
 										</div>
-									
 										<div class="col-md-7 col-lg-12">
 											<input type="date" name="date" id="date"  class="form-control"  required>
 										</div>
 									</div>
 							</div>	
-							
-							
 							<div class="h5 border-bottom rounded">Sposób płatności</div>
 							<div class=" col-md-2 pt-1">
-							
 								<div class="form-check">
 									<div >
-										<input type="radio" name="method" class="form-check-input" value="cash" required> Gotówka
+										<input type="radio" name="method" class="form-check-input" value="Cash" required> Gotówka
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="method" class="form-check-input" required> Karta debetowa
+										<input type="radio" name="method" class="form-check-input" value="Debit Card" required> Karta debetowa
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="method" class="form-check-input" required> Karta kredytowa
+										<input type="radio" name="method" class="form-check-input" value="Credit card" required> Karta kredytowa
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class=" col-md-12 col-lg-6 float-left">
 							<div class="h5 border-bottom rounded">Kategoria</div>
-							
 							<div class="col-lg-5 float-left">
 								<div class="form-check">
-									
-										<input type="radio" name="category" id="1" class="form-check-input" required> Jedzenie
-									
+										<input type="radio" name="category" value="Food" class="form-check-input" required> Jedzenie
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Mieszkanie
+										<input type="radio" name="category" value="Apartments" class="form-check-input" required> Mieszkanie
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Transport
+										<input type="radio" name="category" value="Transport" class="form-check-input" required> Transport
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Telekomunikacja
+										<input type="radio" name="category" value="Telecommunication" class="form-check-input" required> Telekomunikacja
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Opieka zdrowotna
+										<input type="radio" name="category" value="Health" class="form-check-input" required> Opieka zdrowotna
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Higiena
+										<input type="radio" name="category" value="Hygiene" class="form-check-input" required> Higiena
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Dzieci
+										<input type="radio" name="category" value="Kids" class="form-check-input" required> Dzieci
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Rozrywka
+										<input type="radio" name="category" value="Recreation" class="form-check-input" required> Rozrywka
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Wycieczka
+										<input type="radio" name="category" value="Trip" class="form-check-input" required> Wycieczka
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6 float-left" >
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Szkolenia
+										<input type="radio" name="category" value="Cloths" class="form-check-input" required> Odzież
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Książki
+										<input type="radio" name="category" value="Books" class="form-check-input" required> Książki
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Oszczędności
+										<input type="radio" name="category" value="Savings" class="form-check-input" required> Oszczędności
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Na złotą jesień, czyli emeryturę
+										<input type="radio" name="category" value="For Retirement"class="form-check-input" required> Na złotą jesień, czyli emeryturę
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Spłata długów
+										<input type="radio" name="category" value="Debt Retirement" class="form-check-input" required> Spłata długów
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Darowizna
+										<input type="radio" name="category" value="Gift" class="form-check-input" required> Darowizna
 									</div>
 								</div>
 								<div class="form-check">
 									<div>
-										<input type="radio" name="category" class="form-check-input" required> Inne wydatki
+										<input type="radio" name="category"  value="Another" class="form-check-input" required> Inne wydatki
 										<div class="form-group"> 
-											<textarea class="form-control" rows="1"></textarea>
+											<textarea name="comment" class="form-control" rows="1"></textarea>
 										</div>
 									</div>
 								</div>
