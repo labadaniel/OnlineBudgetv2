@@ -74,13 +74,13 @@
 			
 			<div class="row justify-content-center mt-2 mb-2" >
 			
-				<div class="col-9 pt-1  pb-1 text-white  shadow-lg rounded mb-5" style="background-color: #4F788D">
-					<form method="post" action="adding_expenes.php">
+				<div class="col-6 pt-1  pb-1 text-white  shadow-lg rounded mb-5" style="background-color: #4F788D">
+					<form method="post" action="adding_incomes.php">
 						
-						<div class="text-center h4 pb-3">Dodaj wydatek</div>
+						<div class="text-center h4 pb-3">Dodaj przychód</div>
 					
 						<div class="col-sm-12 col-lg-5 p-2 float-left">
-							<div class="h5 border-bottom rounded">Wydatek	</div>
+							<div class="h5 border-bottom rounded">Przychód	</div>
 							<div class="col-md-10">
 									<div class="form-group">
 										<div class="col">
@@ -99,113 +99,34 @@
 										</div>
 									</div>
 							</div>	
-							<div class="h5 border-bottom rounded">Sposób płatności</div>
-							<div class=" col-md-2 pt-1">
-								<div class="form-check">
-									<div >
-										<input type="radio" name="method" class="form-check-input" value="Cash" required> Gotówka
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="method" class="form-check-input" value="Debit Card" required> Karta debetowa
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="method" class="form-check-input" value="Credit card" required> Karta kredytowa
-									</div>
-								</div>
-							</div>
 						</div>
 						<div class=" col-md-12 col-lg-6 float-left">
 							<div class="h5 border-bottom rounded">Kategoria</div>
-							<div class="col-lg-5 float-left">
-								<div class="form-check">
-										<input type="radio" name="category" value="Food" class="form-check-input" required> Jedzenie
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Apartments" class="form-check-input" required> Mieszkanie
+								<div class="col-lg-12 float-left" >
+									<div class="form-check">
+										<div>
+											<input type="radio" name="category" value="Salary" class="form-check-input" required> Wynagrodzenie
+										</div>
 									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Transport" class="form-check-input" required> Transport
+									<div class="form-check">
+										<div>
+											<input type="radio" name="category" value="Interest" class="form-check-input" required> Odsetki bankowe
+										</div>
 									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Telecommunication" class="form-check-input" required> Telekomunikacja
+									<div class="form-check">
+										<div>
+											<input type="radio" name="category" value="Allegro" class="form-check-input" required> Sprzedaż na Allegro
+										</div>
 									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Health" class="form-check-input" required> Opieka zdrowotna
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Hygiene" class="form-check-input" required> Higiena
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Kids" class="form-check-input" required> Dzieci
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Recreation" class="form-check-input" required> Rozrywka
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Trip" class="form-check-input" required> Wycieczka
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6 float-left" >
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Cloths" class="form-check-input" required> Odzież
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Books" class="form-check-input" required> Książki
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Savings" class="form-check-input" required> Oszczędności
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="For Retirement"class="form-check-input" required> Na złotą jesień, czyli emeryturę
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Debt Retirement" class="form-check-input" required> Spłata długów
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category" value="Gift" class="form-check-input" required> Darowizna
-									</div>
-								</div>
-								<div class="form-check">
-									<div>
-										<input type="radio" name="category"  value="Another" class="form-check-input" required> Inne wydatki
-										<div class="form-group"> 
+									<div class="form-check">
+										<input type="radio" name="category"  value="Another" class="form-check-input" required> Inne przychody
+										<div class="form-group mt-2"> 
 											<textarea name="comment" class="form-control" rows="1"></textarea>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class=" float-right mb-5">
+							<div class=" float-right mb-3">
 								<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit" formnovalidate>Anuluj</button>
 								<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit">Dodaj</button>
 							</div>
