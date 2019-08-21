@@ -51,7 +51,7 @@
 		<div class="mx-auto">
 			<ul class="navbar-nav mx-auto collapse navbar-collapse" id="navb">
 				<li class="nav-item px-3">
-					<a class="nav-link" href="#">Dodaj przychód</a>
+					<a class="nav-link" href="incomes.php">Dodaj przychód</a>
 				</li>
 				
 				<li class="nav-item px-3 ">
