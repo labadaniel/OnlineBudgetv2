@@ -1,3 +1,76 @@
+<?php
+	
+	session_start();
+	
+	
+	function show_expenses($date)
+	{	
+		require_once "connect.php";
+	
+		//global $connection_sql;
+		$connection_sql = new mysqli($host, $db_user, $db_password, $db_name);
+		try
+		{
+			if($connection_sql->connect_errno !=0)
+			{
+				throw new exception (mysqli_connect_errno);
+			}else
+			{	
+				$id = $_SESSION['logged_user_id'];
+				if($result = $connection_sql->query("SELECT expuser.name, SUM(exp.amount), exp.date_of_expense
+															FROM expenses  AS exp
+															INNER JOIN expenses_category_assigned_to_users AS expuser
+															WHERE expuser.id = exp.expense_category_assigned_to_user_id
+															AND exp.user_id = '$id'
+															AND exp.date_of_expense LIKE '%$date%'
+															GROUP BY expuser.name DESC "))
+				{
+					while($rows = $result->fetch_assoc())
+					{
+						$i = 1;
+						foreach($rows as $row)
+						{
+							if($i ==2)
+								echo $row." zł ";
+							else
+								echo $row." ";
+							$i++;
+						}
+						echo "<br>";
+					}
+					$result->close();
+				}
+			}
+		}
+		catch(exception $e)
+		{
+			echo $e->getMessage();
+			echo '<span style="color:red;">Błąd serwera. Przepraszamy za niedogodności i prosimy o rejestrację w innym terminie</span>';
+			echo '<br /> Informacja deweloperska: '.$e;
+		}
+		$connection_sql->close();
+	}
+	
+	if(isset($_POST['balance']))
+	{
+		switch($_POST['balance'])
+		{
+			case "current_month":
+				$_SESSION['current'] = true;
+				break;
+			case "previouse_month":
+				$_SESSION['previous'] = true;
+				break;
+			case "current_year":
+				$_SESSION['year'] = true;
+				break;
+			case "user_period":
+				echo " user_period";
+				break;
+		}		
+	}
+?>
+
 <!doctype html>
 <html lang="PL">
   <head>
@@ -45,15 +118,15 @@
 		<div class="mx-auto">
 			<ul class="navbar-nav mx-auto collapse navbar-collapse" id="navb">
 				<li class="nav-item px-3">
-					<a class="nav-link" href="#">Dodaj przychód</a>
+					<a class="nav-link" href="incomes.php">Dodaj przychód</a>
 				</li>
 				
 				<li class="nav-item px-3 ">
-					<a class="nav-link" href="expense.html">Dodaj wydatek</a>
+					<a class="nav-link" href="expense.php">Dodaj wydatek</a>
 				</li>
 				
 				<li class="nav-item px-3 ">
-					<a class="nav-link" href="balance.html">Przeglądaj bilans</a>
+					<a class="nav-link" href="balance.php">Przeglądaj bilans</a>
 				</li>
 				
 				<li class="nav-item px-3 ">
@@ -61,7 +134,7 @@
 				</li>
 				
 				<li class="nav-item px-3 ">
-					<a class="nav-link" href="login.html">Wyloguj się</a>
+					<a class="nav-link" href="logout.php">Wyloguj się</a>
 				</li>
 			</ul>
 		</div>
@@ -73,11 +146,34 @@
 			<div class="row " style="min-height:400px" >
 				<div class=" col-lg-8 col-md-8 col-sm-8 col-7 d-inline-block">
 					<div class="col-lg-5 pt-2  mt-3 ml-3 pb-2 text-white  shadow-lg rounded d-inline-block" style="background-color: #4F788D">
-						<p class="text-center h4">Przychody</p>
+						<p class="text-center h4" >Przychody</p>
+						
 					</div>
 					
 					<div class="col-lg-5 pt-2  pb-2 ml-3 mt-3 text-white  shadow-lg rounded d-inline-block" style="background-color: #4F788D">
 						<p class="text-center h4">Wydatki</p>
+						<?php
+						
+							$id = $_SESSION['logged_user_id'];
+							if(isset($_SESSION['current']))
+							{
+								$date = date('Y-m');
+								show_expenses($date);
+								unset($_SESSION['current']);
+							}
+							if(isset($_SESSION['previous'] ))
+							{
+								$date = date('Y-m', strtotime('-1 month'));
+								show_expenses($date);
+								unset($_SESSION['previous']);
+							}
+							if(isset($_SESSION['year'] ))
+							{
+								$date = date('Y');
+								show_expenses($date);
+								unset($_SESSION['year']);
+							}
+						?>
 					</div>
 				</div>
 				
@@ -86,36 +182,38 @@
 						Wybierz datę
 					</button>
 					<div class="col dropdown-menu shadow-lg text-white" style="background-color: #4F788D">
-						<div class="form-check mx-2">
-							<input type="radio" class="form-check-input" name="period">
-							<label class="form-check-label">Bieżący miesiąc</label>
-						</div>
-						<div class="form-check mx-2">
-							<input type="radio" class="form-check-input" name="period">
-							<label class="form-check-label">Poprzedni miesiąc</label>
-						</div>
-						<div class="form-check mx-2">
-							<input type="radio" class="form-check-input" name="period">
-							<label class="form-check-label">Bieżący rok</label>
-						</div>
-						<div class="form-check mx-2">
-							<input type="radio" class="form-check-input" name="period">
-							<label class="form-check-label">Niestandardowy okres:</label>
-						</div>
-						<div class="form-group mt-1"> 
-							<label for="fromDate" class="col px-1"> Od kiedy</label>
-							<input type="date" name="date"  id="fromDate" class="form-control w-75 mx-auto col-9" required>
-						</div>
-						<div class="form-group"> 
-							<label for="toDate" class="col  px-1"> Do kiedy</label>
-							<input type="date" name="date"  id="toDate" class="form-control w-75 mx-auto  col-9" required>
-						</div>
-						
-						<div class="float-right mt-1 mr-2 ">
-							<button type="button" class="btn btn-primary tlo2" >
-								Pokaz
-							</button>
-						</div>
+						<form  method="post">
+							<div class="form-check mx-2">
+								<input type="radio" class="form-check-input" name="balance" value="current_month" required>
+								<label class="form-check-label">Bieżący miesiąc</label>
+							</div>
+							<div class="form-check mx-2">
+								<input type="radio" class="form-check-input" name="balance" value="previouse_month" required>
+								<label class="form-check-label">Poprzedni miesiąc</label>
+							</div>
+							<div class="form-check mx-2">
+								<input type="radio" class="form-check-input" name="balance" value="current_year" required>
+								<label class="form-check-label">Bieżący rok</label>
+							</div>
+							<div class="form-check mx-2">
+								<input type="radio" class="form-check-input" name="balance" value="user_period" required>
+								<label class="form-check-label">Niestandardowy okres:</label>
+							</div>
+							<div class="form-group mt-1"> 
+								<label for="fromDate" class="col px-1"> Od kiedy</label>
+								<input type="date" name="from_date"  id="fromDate" class="form-control w-75 mx-auto col-9">
+							</div>
+							<div class="form-group"> 
+								<label for="toDate" class="col  px-1"> Do kiedy</label>
+								<input type="date" name="to_date"  id="toDate" class="form-control w-75 mx-auto  col-9">
+							</div>
+							
+							<div class="float-right mt-1 mr-2 ">
+								<button  type="submit" class="btn btn-primary tlo2" >
+									Pokaz
+								</button>
+							</div>
+						</form>
 					</div>
 					<div class="mt-4 " id="piechart">
 					</div>
