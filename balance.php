@@ -2,12 +2,45 @@
 	
 	session_start();
 	
+	function show_table($result)
+	{
+		echo '<table class="table">
+					<thead>
+						<tr>
+							  <th scope="col">#</th>
+							  <th scope="col">Kategoria</th>
+							  <th scope="col">Wartość</th>
+							  
+							  <th scope="col">Data</th>
+						</tr>
+					</thead>
+					<tbody>
+						';
+		$no_records = 0;
+		while($rows = $result->fetch_assoc())
+		{
+			++$no_records; 
+			
+			$i = 1;
+			echo '<tr><th scope="row">'.$no_records.'</th>';
+			foreach($rows as $row)
+			{
+				
+				if($i ==2)
+					echo '<td>'.$row.' zł </td>';
+				else
+					echo '<td>'.$row.'</td>';
+				$i++;
+			}
+			echo '</tr>';
+			
+		}
+		echo '</tbody></table>';
+	}
 	
 	function show_expenses($date)
 	{	
-		require_once "connect.php";
-	
-		//global $connection_sql;
+		require "connect.php";
 		$connection_sql = new mysqli($host, $db_user, $db_password, $db_name);
 		try
 		{
@@ -23,21 +56,44 @@
 															WHERE expuser.id = exp.expense_category_assigned_to_user_id
 															AND exp.user_id = '$id'
 															AND exp.date_of_expense LIKE '%$date%'
-															GROUP BY expuser.name DESC "))
+															GROUP BY expuser.name
+															ORDER BY exp.date_of_expense DESC"))
 				{
-					while($rows = $result->fetch_assoc())
-					{
-						$i = 1;
-						foreach($rows as $row)
-						{
-							if($i ==2)
-								echo $row." zł ";
-							else
-								echo $row." ";
-							$i++;
-						}
-						echo "<br>";
-					}
+					show_table($result);
+					$result->close();
+				}
+			}
+		}
+		catch(exception $e)
+		{
+			echo $e->getMessage();
+			echo '<span style="color:red;">Błąd serwera. Przepraszamy za niedogodności i prosimy o rejestrację w innym terminie</span>';
+			echo '<br /> Informacja deweloperska: '.$e;
+		}
+		$connection_sql->close();
+	}
+	function show_incomes($date)
+	{	
+		require "connect.php";
+		$connection_sql = new mysqli($host, $db_user, $db_password, $db_name);
+		try
+		{
+			if($connection_sql->connect_errno !=0)
+			{
+				throw new exception (mysqli_connect_errno);
+			}else
+			{	
+				$id = $_SESSION['logged_user_id'];
+				if($result = $connection_sql->query("SELECT incuser.name, SUM(inc.amount), inc.date_of_income
+															FROM incomes  AS inc
+															INNER JOIN incomes_category_assigned_to_users AS incuser
+															WHERE incuser.id = inc.income_category_assigned_to_user_id
+															AND inc.user_id = '$id'
+															AND inc.date_of_income LIKE '%$date%'
+															GROUP BY incuser.name
+															ORDER BY inc.date_of_income DESC"))
+				{
+					show_table($result);
 					$result->close();
 				}
 			}
@@ -56,13 +112,16 @@
 		switch($_POST['balance'])
 		{
 			case "current_month":
-				$_SESSION['current'] = true;
+				$_SESSION['current1'] = true;
+				$_SESSION['current2'] = true;
 				break;
 			case "previouse_month":
-				$_SESSION['previous'] = true;
+				$_SESSION['previous1'] = true;
+				$_SESSION['previous2'] = true;
 				break;
 			case "current_year":
-				$_SESSION['year'] = true;
+				$_SESSION['year1'] = true;
+				$_SESSION['year2'] = true;
 				break;
 			case "user_period":
 				echo " user_period";
@@ -143,35 +202,59 @@
 	<main class="d-block tlo1" style="height: 100%;">
 		<div class="container-fluid no-gutters pt-4  " >
 			
-			<div class="row " style="min-height:400px" >
-				<div class=" col-lg-8 col-md-8 col-sm-8 col-7 d-inline-block">
-					<div class="col-lg-5 pt-2  mt-3 ml-3 pb-2 text-white  shadow-lg rounded d-inline-block" style="background-color: #4F788D">
+			<div class="row " >
+				<div class=" col-lg-8 col-md-8 col-sm-8 col-7 ">
+					<div class="col-lg-5 pt-2  mt-3 ml-3 pb-2 text-white  shadow-lg rounded d-inline- float-left" style="background-color: #4F788D; min-height:400px">
 						<p class="text-center h4" >Przychody</p>
 						
+						<?php
+							
+							$id = $_SESSION['logged_user_id'];
+							if(isset($_SESSION['current1']))
+							{
+								$date = date('Y-m');
+								echo  '<div class="text-center"><u>'.date('F').'</u></div>';
+								show_incomes($date);								
+								unset($_SESSION['current1']);
+							}
+							if(isset($_SESSION['previous1'] ))
+							{
+								$date = date('Y-m', strtotime('-1 month'));
+								show_incomes($date);
+								unset($_SESSION['previous1']);
+							}
+							if(isset($_SESSION['year1'] ))
+							{
+								$date = date('Y');
+								show_incomes($date);
+								unset($_SESSION['year1']);
+							}
+						?>
 					</div>
 					
-					<div class="col-lg-5 pt-2  pb-2 ml-3 mt-3 text-white  shadow-lg rounded d-inline-block" style="background-color: #4F788D">
+					<div class="col-lg-5 pt-2  pb-2 ml-3 mt-3 text-white  shadow-lg rounded d-inline-block" style="background-color: #4F788D; min-height:400px">
 						<p class="text-center h4">Wydatki</p>
 						<?php
 						
 							$id = $_SESSION['logged_user_id'];
-							if(isset($_SESSION['current']))
+							if(isset($_SESSION['current2']))
 							{
 								$date = date('Y-m');
-								show_expenses($date);
-								unset($_SESSION['current']);
+								echo  '<div class="text-center"><u>'.date('F').'</u></div>';
+								show_expenses($date);								
+								unset($_SESSION['current2']);
 							}
-							if(isset($_SESSION['previous'] ))
+							if(isset($_SESSION['previous2'] ))
 							{
 								$date = date('Y-m', strtotime('-1 month'));
 								show_expenses($date);
-								unset($_SESSION['previous']);
+								unset($_SESSION['previous2']);
 							}
-							if(isset($_SESSION['year'] ))
+							if(isset($_SESSION['year2'] ))
 							{
 								$date = date('Y');
 								show_expenses($date);
-								unset($_SESSION['year']);
+								unset($_SESSION['year2']);
 							}
 						?>
 					</div>
