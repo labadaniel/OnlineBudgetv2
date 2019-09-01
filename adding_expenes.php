@@ -1,5 +1,9 @@
 <?php
 	session_start();
+	if(!isset($_SESSION['user_logedin']))
+	{
+		header('location: index.php');
+	}
 	require_once "connect.php";
 	$connection_sql = new mysqli($host, $db_user, $db_password, $db_name);
 	
