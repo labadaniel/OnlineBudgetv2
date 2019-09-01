@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Wrz 2019, 21:50
+-- Czas generowania: 01 Wrz 2019, 21:58
 -- Wersja serwera: 10.3.16-MariaDB
 -- Wersja PHP: 7.3.7
 
@@ -49,51 +49,6 @@ CREATE TABLE `expenses_category_assigned_to_users` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `name` varchar(50) COLLATE utf8_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
-
---
--- Zrzut danych tabeli `expenses_category_assigned_to_users`
---
-
-INSERT INTO `expenses_category_assigned_to_users` (`id`, `user_id`, `name`) VALUES
-(151, 10, 'Recreation'),
-(152, 10, 'Trip'),
-(153, 10, 'Savings'),
-(154, 10, 'For Retirement'),
-(155, 10, 'Debt Repayment'),
-(156, 10, 'Gift'),
-(157, 10, 'Another'),
-(158, 11, 'Transport'),
-(159, 11, 'Books'),
-(160, 11, 'Food'),
-(161, 11, 'Apartments'),
-(162, 11, 'Telecommunication'),
-(163, 11, 'Health'),
-(164, 11, 'Clothes'),
-(165, 11, 'Hygiene'),
-(166, 11, 'Kids'),
-(167, 11, 'Recreation'),
-(168, 11, 'Trip'),
-(169, 11, 'Savings'),
-(170, 11, 'For Retirement'),
-(171, 11, 'Debt Repayment'),
-(172, 11, 'Gift'),
-(173, 11, 'Another'),
-(174, 12, 'Transport'),
-(175, 12, 'Books'),
-(176, 12, 'Food'),
-(177, 12, 'Apartments'),
-(178, 12, 'Telecommunication'),
-(179, 12, 'Health'),
-(180, 12, 'Clothes'),
-(181, 12, 'Hygiene'),
-(182, 12, 'Kids'),
-(183, 12, 'Recreation'),
-(184, 12, 'Trip'),
-(185, 12, 'Savings'),
-(186, 12, 'For Retirement'),
-(187, 12, 'Debt Repayment'),
-(188, 12, 'Gift'),
-(189, 12, 'Another');
 
 -- --------------------------------------------------------
 
