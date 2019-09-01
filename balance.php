@@ -2,6 +2,11 @@
 	
 	session_start();
 	
+	if(!isset($_SESSION['user_logedin']))
+	{
+		header('location: index.php');
+	}
+	
 	function show_table($result)
 	{
 		echo '<table class="table">
@@ -10,32 +15,31 @@
 							  <th scope="col">#</th>
 							  <th scope="col">Kategoria</th>
 							  <th scope="col">Wartość</th>
-							  
-							  <th scope="col">Data</th>
 						</tr>
 					</thead>
-					<tbody>
-						';
+					<tbody>';
 		$no_records = 0;
+		$sum = 0;
 		while($rows = $result->fetch_assoc())
 		{
 			++$no_records; 
-			
 			$i = 1;
 			echo '<tr><th scope="row">'.$no_records.'</th>';
 			foreach($rows as $row)
 			{
-				
 				if($i ==2)
+				{
 					echo '<td>'.$row.' zł </td>';
+					$sum += $row;
+				}
 				else
 					echo '<td>'.$row.'</td>';
 				$i++;
 			}
 			echo '</tr>';
-			
 		}
 		echo '</tbody></table>';
+		echo '<div class="h6">Całkowita wartość: '.number_format($sum, 2, ".", " ").' zł</div>';
 	}
 	
 	function show_expenses($date)
@@ -50,7 +54,7 @@
 			}else
 			{	
 				$id = $_SESSION['logged_user_id'];
-				if($result = $connection_sql->query("SELECT expuser.name, SUM(exp.amount), exp.date_of_expense
+				if($result = $connection_sql->query("SELECT expuser.name, SUM(exp.amount)
 															FROM expenses  AS exp
 															INNER JOIN expenses_category_assigned_to_users AS expuser
 															WHERE expuser.id = exp.expense_category_assigned_to_user_id
@@ -84,7 +88,7 @@
 			}else
 			{	
 				$id = $_SESSION['logged_user_id'];
-				if($result = $connection_sql->query("SELECT incuser.name, SUM(inc.amount), inc.date_of_income
+				if($result = $connection_sql->query("SELECT incuser.name, SUM(inc.amount)
 															FROM incomes  AS inc
 															INNER JOIN incomes_category_assigned_to_users AS incuser
 															WHERE incuser.id = inc.income_category_assigned_to_user_id
@@ -92,6 +96,78 @@
 															AND inc.date_of_income LIKE '%$date%'
 															GROUP BY incuser.name
 															ORDER BY inc.date_of_income DESC"))
+				{
+					show_table($result);
+					$result->close();
+				}
+			}
+		}
+		catch(exception $e)
+		{
+			echo $e->getMessage();
+			echo '<span style="color:red;">Błąd serwera. Przepraszamy za niedogodności i prosimy o rejestrację w innym terminie</span>';
+			echo '<br /> Informacja deweloperska: '.$e;
+		}
+		$connection_sql->close();
+	}
+	
+	function show_incomes_user_period($date1, $date2)
+	{	
+		require "connect.php";
+		$connection_sql = new mysqli($host, $db_user, $db_password, $db_name);
+		try
+		{
+			if($connection_sql->connect_errno !=0)
+			{
+				throw new exception (mysqli_connect_errno);
+			}else
+			{	
+				$id = $_SESSION['logged_user_id'];
+				if($result = $connection_sql->query("SELECT incuser.name, SUM(inc.amount)
+															FROM incomes  AS inc
+															INNER JOIN incomes_category_assigned_to_users AS incuser
+															WHERE incuser.id = inc.income_category_assigned_to_user_id
+															AND inc.user_id = '$id'
+															AND inc.date_of_income >= '$date1'
+															AND inc.date_of_income <= '$date2'
+															GROUP BY incuser.name
+															ORDER BY inc.date_of_income DESC"))
+				{
+					show_table($result);
+					$result->close();
+				}
+			}
+		}
+		catch(exception $e)
+		{
+			echo $e->getMessage();
+			echo '<span style="color:red;">Błąd serwera. Przepraszamy za niedogodności i prosimy o rejestrację w innym terminie</span>';
+			echo '<br /> Informacja deweloperska: '.$e;
+		}
+		$connection_sql->close();
+	}
+	function show_expenses_user_period($date1, $date2)
+	{	
+		require "connect.php";
+		$connection_sql = new mysqli($host, $db_user, $db_password, $db_name);
+		try
+		{
+			if($connection_sql->connect_errno !=0)
+			{
+				throw new exception (mysqli_connect_errno);
+			}else
+			{	
+				$id = $_SESSION['logged_user_id'];
+
+				if($result = $connection_sql->query("SELECT expuser.name, SUM(exp.amount)
+															FROM expenses  AS exp
+															INNER JOIN expenses_category_assigned_to_users AS expuser
+															WHERE expuser.id = exp.expense_category_assigned_to_user_id
+															AND exp.user_id = '$id'
+															AND exp.date_of_expense >= '$date1'
+															AND exp.date_of_expense <= '$date2'
+															GROUP BY expuser.name
+															ORDER BY exp.date_of_expense DESC"))
 				{
 					show_table($result);
 					$result->close();
@@ -124,7 +200,8 @@
 				$_SESSION['year2'] = true;
 				break;
 			case "user_period":
-				echo " user_period";
+				$_SESSION['user_period1'] = true;
+				$_SESSION['user_period2'] = true;
 				break;
 		}		
 	}
@@ -229,6 +306,13 @@
 								show_incomes($date);
 								unset($_SESSION['year1']);
 							}
+							if(isset($_SESSION['user_period1'] ))
+							{
+								$_SESSION['date1'] = $_POST['from_date'];
+								$_SESSION['date2']  = $_POST['to_date'];
+								show_incomes_user_period($_SESSION['date1'], $_SESSION['date2']);
+								unset($_SESSION['user_period1']);
+							}
 						?>
 					</div>
 					
@@ -255,6 +339,13 @@
 								$date = date('Y');
 								show_expenses($date);
 								unset($_SESSION['year2']);
+							}
+							if(isset($_SESSION['user_period2'] ))
+							{
+								$_SESSION['date1'] = $_POST['from_date'];
+								$_SESSION['date2']  = $_POST['to_date'];
+								show_expenses_user_period($_SESSION['date1'], $_SESSION['date2']);
+								unset($_SESSION['user_period2']);
 							}
 						?>
 					</div>
