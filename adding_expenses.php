@@ -8,7 +8,9 @@
 	{
 		$_SESSION['modal'] = false;
 		header("location: main.php");
-	}else{
+	}
+	else
+	{
 		require_once "connect.php";
 		$connection_sql = new mysqli($host, $db_user, $db_password, $db_name);
 		
@@ -22,17 +24,23 @@
 			{
 				$amount = $_POST['amount'];
 				$date = date('Y-m-d',strtotime($_POST['date']));
+				$method = $_POST['method'];
 				$category = $_POST['category'];
 				$id = $_SESSION['logged_user_id'];
 				$comment = $_POST['comment'];
-				
-				if($result = $connection_sql->query("SELECT id FROM incomes_category_assigned_to_users WHERE name = '$category' AND user_id = '$id'"))
+				if($result = $connection_sql->query("SELECT id FROM payment_methods_assigned_to_users WHERE name = '$method' AND user_id = '$id'"))
+				{
+					$row = $result->fetch_assoc();
+					$id_method = $row['id'];
+					$result->free_result();
+				}
+				if($result = $connection_sql->query("SELECT id FROM expenses_category_assigned_to_users WHERE name = '$category' AND user_id = '$id'"))
 				{
 					$row = $result->fetch_assoc();
 					$id_category = $row['id'];
 					$result->free_result();
 				}
-				if($connection_sql->query("INSERT INTO incomes VALUES (NULL, '$id', '$id_category',  '$amount', '$date', '$comment')"))
+				if($connection_sql->query("INSERT INTO expenses VALUES (NULL, '$id', '$id_category', '$id_method', '$amount', '$date', '$comment')"))
 					$_SESSION['modal'] = true;
 				
 			}

@@ -7,19 +7,31 @@
 ?>
 
 <!doctype html>
-<html lang="PL">
+<html lang="PL" class="h-100">
   <head>
     <title>Personal Budget</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="style.css">
+	
  
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body  class="d-flex flex-column h-100">
+  <?php
+  if(isset($_SESSION['modal']))
+  {
+  if($_SESSION['modal'])
+	{
+		echo '<div id="myModal" class="modal"> <div class="modal-content"><span class="close">&times;</span><p>Dodano do bazy danych.</p></div></div>';
+		$_SESSION['modal'] = false;
+		unset($_SESSION['modal']);
+	}
+  }
+?>
     <header class="d-block">
 		<div class="container-fluid no-gutters">
 			<div class="row" >
@@ -73,16 +85,14 @@
 		</div>
 	</nav>
 	
-	<main class="d-block tlo1" style="height: 100%;">
+	<main class="d-block tlo1 h-100">
 		<div class="container-fluid no-gutters pt-5 " >
-		<?php
-			echo "udalo sie. hurrra";
-		?>
+		
 		</div>
 	</main>
 	
 	<footer>
-		<div class="fixed-bottom tlo3 w-100 pt-3 pb-3 text-center">
+		<div class=" mt-auto text-center tlo3 py-3">
 			Wszelkie prawa zastrzeżone &copy; 2019 Dziękuję za wizytę!
 		</div>
 	</footer>
@@ -92,5 +102,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="script.js"></script>
   </body>
 </html>

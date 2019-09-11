@@ -11,19 +11,20 @@
 
 
 <!doctype html>
-<html lang="pPL">
+<html lang="PL" class="h-100">
   <head>
     <title>Personal Budget</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="style.css">
  
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
+  <link href="sticky-footer.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="d-flex flex-column h-100">
     <header class="d-block">
 		<div class="container-fluid no-gutters">
 			<div class="row" >
@@ -46,11 +47,11 @@
 		</div>
 	</header>
 	
-	<main class="d-block tlo1" style="height: 100%;">
+	<main class="tlo1 h-100">
 		<div class="container-fluid no-gutters pt-5 " >
 			<div class="row justify-content-center" >
 				<div class="col-lg-5 col-sm-8  p-4  text-white  h4 shadow-lg rounded" style="background-color: #4F788D">
-					<p class="text-center">Zaloguj sie</p>
+					<p class="text-center">Zaloguj się</p>
 					<form class="h6 pt-2 " method="post" action="login.php">
 						<div class="form-group">
 							<div class="col-5">
@@ -62,10 +63,10 @@
 						</div>
 						<div class="form-group">
 							<div class="col-5">
-								<label for="password"> Podaj haslo: </label>
+								<label for="password"> Podaj hasło: </label>
 							</div>
 							<div class="col-12">
-								<input type="password" id="password" name="password" class="form-control" placeholder="haslo">
+								<input type="password" id="password" name="password" class="form-control" placeholder="hasło">
 							</div>
 							<?php
 								if(isset($_SESSION['blad'] ))
@@ -86,7 +87,7 @@
 	</main>
 	
 	<footer>
-		<div class="fixed-bottom tlo3 w-100 pt-3 pb-3 text-center">
+		<div class=" mt-auto text-center tlo3 py-3">
 			Wszelkie prawa zastrzeżone &copy; 2019 Dziękuję za wizytę!
 		</div>
 	</footer>
@@ -94,7 +95,7 @@
 	
  
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
