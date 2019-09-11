@@ -142,7 +142,6 @@
 		{
 			echo $e->getMessage();
 			echo '<span style="color:red;">Błąd serwera. Przepraszamy za niedogodności i prosimy o rejestrację w innym terminie</span>';
-			echo '<br /> Informacja deweloperska: '.$e;
 		}
 		$connection_sql->close();
 	}
@@ -204,11 +203,14 @@
 				$_SESSION['user_period2'] = true;
 				break;
 		}		
+	}else{
+		$_SESSION['current1'] = true;
+		$_SESSION['current2'] = true;
 	}
 ?>
 
 <!doctype html>
-<html lang="PL">
+<html lang="PL" class="h-100">
   <head>
     <title>Personal Budget</title>
     <!-- Required meta tags -->
@@ -222,7 +224,7 @@
   <script  src="script.js"></script>
 	<script src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
-  <body onload="drawPieChart()">
+  <body onload="drawPieChart()" class="d-flex flex-column h-100">
     <header class="d-block">
 		<div class="container-fluid no-gutters">
 			<div class="row" >
@@ -276,7 +278,7 @@
 		</div>
 	</nav>
 	
-	<main class="d-block tlo1" style="height: 100%;">
+	<main class="d-block tlo1 h-100">
 		<div class="container-fluid no-gutters pt-4  " >
 			
 			<div class="row " >
@@ -290,7 +292,6 @@
 							if(isset($_SESSION['current1']))
 							{
 								$date = date('Y-m');
-								echo  '<div class="text-center"><u>'.date('F').'</u></div>';
 								show_incomes($date);								
 								unset($_SESSION['current1']);
 							}
@@ -324,7 +325,6 @@
 							if(isset($_SESSION['current2']))
 							{
 								$date = date('Y-m');
-								echo  '<div class="text-center"><u>'.date('F').'</u></div>';
 								show_expenses($date);								
 								unset($_SESSION['current2']);
 							}
@@ -384,7 +384,7 @@
 							
 							<div class="float-right mt-1 mr-2 ">
 								<button  type="submit" class="btn btn-primary tlo2" >
-									Pokaz
+									Pokaż
 								</button>
 							</div>
 						</form>
@@ -398,7 +398,7 @@
 	</main>
 	
 	<footer>
-		<div class="fixed-bottom tlo3 w-100 pt-3 pb-3 text-center">
+		<div class="mt-auto text-center tlo3 py-3">
 			Wszelkie prawa zastrzeżone &copy; 2019 Dziękuję za wizytę!
 		</div>
 	</footer>

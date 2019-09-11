@@ -6,7 +6,7 @@
 	}
 ?>
 <!doctype html>
-<html lang="PL">
+<html lang="PL" class="h-100">
   <head>
     <title>Personal Budget</title>
     <!-- Required meta tags -->
@@ -22,7 +22,9 @@
 	<script src="script.js"></script>
 	<script src="https://www.gstatic.com/charts/loader.js"></script>
   </head>
-  <body onload="currentDate()"  class="d-flex flex-column">
+  <body onload="currentDate()"  class="d-flex flex-column h-100">
+  
+  
     <header class="d-block">
 		<div class="container-fluid no-gutters">
 			<div class="row" >
@@ -76,12 +78,12 @@
 		</div>
 	</nav>
 	
-	<main class="d-block tlo1" style="height: 100%;">
+	<main class="d-block tlo1 h-100">
 		<div class="container-fluid no-gutters pt-2  " >
 			
 			<div class="row justify-content-center mt-2 mb-2" >
 			
-				<div class="col-6 pt-1  pb-1 text-white  shadow-lg rounded mb-5" style="background-color: #4F788D">
+				<div class="col-9 pt-1  pb-1 text-white  shadow-lg rounded mb-5" style="background-color: #4F788D">
 					<form method="post" action="adding_incomes.php">
 						
 						<div class="text-center h4 pb-3">Dodaj przychód</div>
@@ -91,7 +93,7 @@
 							<div class="col-md-10">
 									<div class="form-group">
 										<div class="col">
-											<label for="amount">Podaj kwote: </label>
+											<label for="amount">Podaj kwotę: </label>
 										</div>
 										<div class="col-md-7 col-lg-12">
 											<input type="number" name="amount"  id="amount" step=0.01 class="form-control" placeholder="kwota" required>
@@ -107,17 +109,17 @@
 									</div>
 							</div>	
 						</div>
-						<div class=" col-md-12 col-lg-6 float-left">
+						<div class=" col-md-12 col-lg-6 p-2 float-left">
 							<div class="h5 border-bottom rounded">Kategoria</div>
 								<div class="col-lg-12 float-left" >
 									<div class="form-check">
 										<div>
-											<input type="radio" name="category" value="Salary" class="form-check-input" required> Wynagrodzenie
+											<input type="radio" name="category" value="Wynagrodzenie" class="form-check-input" required> Wynagrodzenie
 										</div>
 									</div>
 									<div class="form-check">
 										<div>
-											<input type="radio" name="category" value="Interest" class="form-check-input" required> Odsetki bankowe
+											<input type="radio" name="category" value="Odsetki bankowe" class="form-check-input" required> Odsetki bankowe
 										</div>
 									</div>
 									<div class="form-check">
@@ -126,7 +128,7 @@
 										</div>
 									</div>
 									<div class="form-check">
-										<input type="radio" name="category"  value="Another" class="form-check-input" required> Inne przychody
+										<input type="radio" name="category"  value="Inne" class="form-check-input" required> Inne przychody
 										<div class="form-group mt-2"> 
 											<textarea name="comment" class="form-control" rows="1"></textarea>
 										</div>
@@ -134,8 +136,25 @@
 								</div>
 							</div>
 							<div class=" float-right mb-3">
-								<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit" formnovalidate>Anuluj</button>
-								<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit">Dodaj</button>
+								<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit" value="cancel" formnovalidate>Anuluj</button>
+								
+								<button class="tlo2 btn btn-primary float-right ml-4 hoverable" type="submit" name="submit"  id="myBtn">Dodaj</button>
+								
+								
+								
+
+<!-- The Modal -->
+
+
+  <!-- Modal content -->
+ 
+    
+    
+  
+
+
+								
+								
 							</div>
 						</div>
 					</form>
@@ -145,16 +164,15 @@
 		
 	</main>
 	
-	<footer class=" tlo3  mt-auto py-3  fixed-bottom text-center">
-		
-			<div>
-				Wszelkie prawa zastrzeżone &copy; 2019 Dziękuję za wizytę!
-			</div>
-	
+	<footer>
+		<div class=" mt-auto text-center tlo3 py-3">
+			Wszelkie prawa zastrzeżone &copy; 2019 Dziękuję za wizytę!
+		</div>
 	</footer>
 
 	
  
    
   </body>
+  <script src="script.js"></script>
 </html>

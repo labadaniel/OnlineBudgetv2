@@ -122,7 +122,7 @@
 
 
 <!doctype html>
-<html lang="PL">
+<html lang="PL" class="h-100">
   <head>
     <title>Personal Budget</title>
     <!-- Required meta tags -->
@@ -134,7 +134,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body class="d-flex flex-column h-100">
     <header class="d-block">
 		<div class="container-fluid no-gutters">
 			<div class="row" >
@@ -157,7 +157,7 @@
 		</div>
 	</header>
 	
-	<main class="d-block tlo1" style="height: 100%;">
+	<main class="d-block tlo1 h-100">
 		<div class="container-fluid no-gutters pt-5 " >
 			<div class="row justify-content-center" >
 			
@@ -166,11 +166,11 @@
 					<form class="h6 pt-2" method="post">
 						<div class="form-group">
 							<div class="col-5">
-								<label for="text">Podaj swoje imie: </label>
+								<label for="text">Podaj swoje imię: </label>
 							</div>
 						
 							<div class="col-12">
-								<input type="text" id="text" class="form-control" name="username" placeholder="Twoje imie">
+								<input type="text" id="text" class="form-control" name="username" placeholder="Twoje imię">
 							</div>
 							<?php
 								if(isset($_SESSION['e_username']))
@@ -183,11 +183,11 @@
 						
 						<div class="form-group">
 							<div class="col-5">
-								<label for="email"> Podaj swoj email: </label>
+								<label for="email"> Podaj swój email: </label>
 							</div>
 						
 							<div class="col-12">
-								<input type="text" id="email" name="email" class="form-control" placeholder="Twoj email">
+								<input type="text" id="email" name="email" class="form-control" placeholder="Twój email">
 							</div>
 							
 							<?php
@@ -201,11 +201,11 @@
 						
 						<div class="form-group">
 							<div class="col-5">
-								<label for="password1"> Podaj haslo: </label>
+								<label for="password1"> Podaj hasło: </label>
 							</div>
 						
 							<div class="col-12">
-								<input type="password" id="password1" name="password1" class="form-control" placeholder="haslo">
+								<input type="password" id="password1" name="password1" class="form-control" placeholder="hasło">
 							</div>
 							<?php
 								if(isset($_SESSION['e_password']))
@@ -215,11 +215,11 @@
 								}
 							?>
 							<div class="col-5">
-								<label for="password2"> Powtórz haslo: </label>
+								<label for="password2"> Powtórz hasło: </label>
 							</div>
 						
 							<div class="col-12">
-								<input type="password" id="password2" name="password2" class="form-control" placeholder="haslo">
+								<input type="password" id="password2" name="password2" class="form-control" placeholder="hasło">
 							</div>
 							<?php
 								if(isset($_SESSION['e_password']))
@@ -237,7 +237,7 @@
 	</main>
 	
 	<footer>
-		<div class="fixed-bottom tlo3 w-100 pt-3 pb-3 text-center">
+		<div class=" mt-auto text-center tlo3 py-3">
 			Wszelkie prawa zastrzeżone &copy; 2019 Dziękuję za wizytę!
 		</div>
 	</footer>
